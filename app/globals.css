@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root { --background: #f4f1eb; --foreground: #112b35; --radius: 0.75rem; }
+@theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --font-sans: var(--font-inter); --font-serif: var(--font-cormorant); }
+
+@layer base {
+  * { @apply border-[#112b35]/10; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground antialiased; }
+}
+
+@layer components {
+  .section-label { @apply text-xs font-medium uppercase tracking-[.25em] text-[#ad7e3c]; }
+  .field-label { @apply flex flex-col gap-2 text-xs font-semibold uppercase tracking-[.12em] text-[#4f6061]; }
+  .field-label input, .field-label select { @apply mt-1 w-full border-0 border-b border-[#112b35]/20 bg-transparent px-0 py-3 text-base font-normal normal-case tracking-normal text-[#112b35] outline-none transition-colors focus:border-[#ad7e3c]; }
+  .field-label select { @apply cursor-pointer; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
