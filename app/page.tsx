@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import {
   ArrowUpRight,
@@ -35,8 +34,12 @@ const projects = [
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const searchParams = useSearchParams()
-  const [isArabic, setIsArabic] = useState(() => searchParams.get('lang') === 'ar')
+  const [isArabic, setIsArabic] = useState(false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setIsArabic(params.get('lang') === 'ar')
+  }, [])
 
   function toggleLanguage() {
     const nextIsArabic = !isArabic
